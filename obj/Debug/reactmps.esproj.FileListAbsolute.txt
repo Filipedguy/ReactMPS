@@ -1,0 +1,2 @@
+C:\PersonalRepositories\ReactMPS\obj\Debug\reactmps.esproj.SuggestedBindingRedirects.cache
+C:\PersonalRepositories\ReactMPS\obj\Debug\reactmps.esproj.CoreCompileInputs.cache

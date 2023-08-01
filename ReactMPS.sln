@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33723.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "reactmps", "reactmps.esproj", "{AEE4027C-631F-42D2-A334-454BC6A4A79B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AEE4027C-631F-42D2-A334-454BC6A4A79B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEE4027C-631F-42D2-A334-454BC6A4A79B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEE4027C-631F-42D2-A334-454BC6A4A79B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{AEE4027C-631F-42D2-A334-454BC6A4A79B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEE4027C-631F-42D2-A334-454BC6A4A79B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEE4027C-631F-42D2-A334-454BC6A4A79B}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E499F4DA-136D-4B70-9C86-5C04BC2E59B7}
+	EndGlobalSection
+EndGlobal
