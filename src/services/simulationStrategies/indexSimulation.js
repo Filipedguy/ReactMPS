@@ -42,7 +42,8 @@ export default function indexSimulation(match, rank) {
         match.awayScore = 0;
     }
 
-    for (var i = 0; i < 9; i++) {
+    var gt = (match.gameTime / 10);
+    for (var i = gt; i < 9; i++) {
         if (hasChance(match.homeTeam, match.awayTeam) && hasScored(match.homeTeam, match.awayTeam)) {
             match.homeScore++;
         }

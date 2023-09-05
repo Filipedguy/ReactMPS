@@ -1,17 +1,30 @@
-import axios from 'axios';
+﻿//import axios from 'axios';
 import dayjs from 'dayjs';
-
-const baseUrl = "http://localhost:1337/api";
+import { getData } from './external/footstatsService';
 
 export async function GetTable() {
-    var response = await axios.get(`${baseUrl}/table`);
-
-    var table = response.data.table;
+    var response = await getData();
+    var table = response.table;
 
     table.rounds.forEach(r => {
         r.matches.forEach(m => {
             if (m.date === 'Invalid Date') {
                 m.date = undefined;
+            }
+
+            m.gameTime = 0;
+
+            if (m.status === 'em andamento') {
+                var startDate = dayjs(m.date);
+
+                m.gameTime = dayjs().diff(startDate, 'minute');
+
+                if (m.period === '2°T') {
+                    m.gameTime -= 20;
+                }
+                else if (m.gameTime > 45) {
+                    m.gameTime = 45;
+                }
             }
         });
 

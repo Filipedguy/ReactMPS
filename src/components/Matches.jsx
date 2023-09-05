@@ -11,10 +11,20 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import dayjs from 'dayjs';
 import Badge from '@mui/material/Badge';
+import LiveMatchSimulation from './LiveMatchSimulation';
 
 export default function Matches(props) {
-    var initialRound = Math.min(...props.rounds.flatMap(r => r.matches).filter(m => m.status === "agendado" || m.statistics).map(m => m.round));
-    initialRound = (props.rounds.flatMap(r => r.matches).filter(m => m.status === "agendado" && m.date).sort(m => m.date))[0].round;
+    var allMatches = props.rounds.flatMap(r => r.matches);
+    var initialRound = 38;
+
+    if (allMatches.some(m => m.status === "em andamento")) {
+        initialRound = (allMatches.filter(m => m.status === "em andamento" && m.date).sort(m => m.date))[0].round;
+    }
+
+    else if (allMatches.some(m => m.status === "agendado")) {
+        initialRound = (allMatches.filter(m => m.status === "agendado" && m.date).sort(m => m.date))[0].round;
+    }
+
     var [currentRound, setCurrentRound] = React.useState(initialRound - 1);
 
     var previousDisabled = currentRound === 0;
@@ -46,7 +56,7 @@ export default function Matches(props) {
                 <Typography variant="h5">Rodada {currentRound + 1}</Typography>
                 <Button disabled={nextDisabled} onClick={nextRound}><ArrowForwardIcon /></Button>
             </Stack>
-            {props.rounds[currentRound].matches.map(m => <Match key={m.id} data={m} onSimulateRequest={handleSimulateRequest}></Match>)}
+            {props.rounds[currentRound].matches.map(m => <Match key={m.id} data={m} rank={props.rank} onSimulateRequest={handleSimulateRequest}></Match>)}
         </Stack>
     );
 }
@@ -73,7 +83,7 @@ function Match(props) {
 
         if (data.status === "em andamento") {
             return (
-                <Badge badgeContent={45} color="error">
+                <Badge badgeContent={data.gameTime} color="error">
                     {dateComponent}
                 </Badge>
             )
@@ -108,7 +118,10 @@ function Match(props) {
             </CardContent>
             <CardActions>
                 <Container>
-                    <Button size="small" variant="outlined" disabled={props.data.status === "finalizado"} onClick={handleSimulateRequest}>Simulate</Button>
+                    <Stack direction="row" justifyContent="center" spacing={1}>
+                        <Button size="small" variant="outlined" disabled={props.data.status === "finalizado"} onClick={handleSimulateRequest}>Simulate</Button>
+                        <LiveMatchSimulation match={props.data} rank={props.rank} disabled={props.data.status === "finalizado"} />
+                    </Stack>
                 </Container>
             </CardActions>
         </Card>

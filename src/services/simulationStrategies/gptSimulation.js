@@ -58,7 +58,8 @@ export default function GPTSimulation(match, rank) {
         match.awayScore = 0;
     }
 
-    for (var minutesPlayed = 0; minutesPlayed < 9; minutesPlayed++) {
+    var gt = (match.gameTime / 10);
+    for (var minutesPlayed = gt; minutesPlayed < 9; minutesPlayed++) {
         if (hasChance(match.homeTeam, match.awayTeam, minutesPlayed, match.homeScore, match.awayScore, true) && hasScored(match.homeTeam, match.awayTeam)) {
             match.homeScore++;
         }

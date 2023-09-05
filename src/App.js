@@ -109,8 +109,13 @@ function App() {
     useEffect(() => {
         if (isSimulating && progress < totalRuns && simulationMode !== SimulationMode.Table) {
             Object.enum(SimulationType).forEach(s => {
-                var specificStatistics = statistics.filter(x => x.id === s.value);
-                var newStats = [simulate(table, simulationType, specificStatistics)];
+                var specificStatistics = statistics.filter(x => x.id === s.value)[0];
+
+                var simulationResult = simulate(table, simulationType, specificStatistics);
+                simulationResult.id = s.value;
+                simulationResult.name = s.label;
+
+                var newStats = [simulationResult];
 
                 statistics.forEach(x => {
                     if (x.id !== s.value) { newStats.push(x); }
@@ -194,7 +199,7 @@ function App() {
                             </>
                         ) : ''}
                     </Grid>
-                    {simulationMode !== SimulationMode.Table ? <Statistics total={progress} teams={teams} statistics={statistics} /> : ""}
+                    {simulationMode !== SimulationMode.Table ? <Statistics total={progress} teams={teams} statistics={statistics.filter(s => s.id === simulationType)[0]} /> : ""}
                     {simulationMode !== SimulationMode.Chances ? <SoccerTable table={simulatedTable} test="true" onSimulateRequest={handleSimulateRequest} /> : ""}
                 </Container>
             }

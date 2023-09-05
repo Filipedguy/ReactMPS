@@ -42,7 +42,7 @@ export default function SoccerTable(props) {
                     </TableContainer>
                 </Grid>
                 <Grid item xs={4}>
-                    <Matches rounds={props.table.rounds} onSimulateRequest={handleSimulateRequest} />
+                    <Matches rank={props.table.rank} rounds={props.table.rounds} onSimulateRequest={handleSimulateRequest} />
                 </Grid>
             </Grid>
         </Container>
