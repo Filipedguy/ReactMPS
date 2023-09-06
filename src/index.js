@@ -24,7 +24,7 @@ Array.prototype.count = function (filter) {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <BrowserRouter basename='/Contas16v2'>
+    <BrowserRouter basename='/ReactMPS'>
         <React.StrictMode>
             <App />
         </React.StrictMode>
