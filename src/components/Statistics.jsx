@@ -17,16 +17,16 @@ export default function Statistics(props) {
     return (
         <Container>
             <Grid container spacing={2}>
-                <Grid item xs={3}>
+                <Grid item mb={2} xs={12} sm={6} lg={3}>
                     <StatisticsTable title="Campeão" total={props.total} teams={props.teams} data={props.statistics.champ} /> <br />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item mb={2} xs={12} sm={6} lg={3}>
                     <StatisticsTable title="Libertadores" total={props.total} teams={props.teams} data={props.statistics.continentalCup} /> <br />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item mb={2} xs={12} sm={6} lg={3}>
                     <StatisticsTable title="Pré-libertadores" total={props.total} teams={props.teams} data={props.statistics.continentalCupQualifiers} /> <br />
                 </Grid>
-                <Grid item xs={3}>
+                <Grid item mb={2} xs={12} sm={6} lg={3}>
                     <StatisticsTable title="Rebaixamento" total={props.total} teams={props.teams} data={props.statistics.descending} /> <br />
                 </Grid>
             </Grid>

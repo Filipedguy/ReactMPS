@@ -17,7 +17,7 @@ export default function SoccerTable(props) {
     return (
         <Container>
             <Grid container>
-                <Grid item xs={8}>
+                <Grid mb={2} item xs={12} lg={8}>
                     <TableContainer component={Paper}>
                         <Table>
                             <TableHead>
@@ -41,7 +41,7 @@ export default function SoccerTable(props) {
                         </Table>
                     </TableContainer>
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item xs={12} lg={4}>
                     <Matches rank={props.table.rank} rounds={props.table.rounds} onSimulateRequest={handleSimulateRequest} />
                 </Grid>
             </Grid>
