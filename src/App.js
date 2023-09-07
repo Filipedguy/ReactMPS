@@ -174,19 +174,19 @@ function App() {
                         </Grid>
                         <Grid item xs={12} mb={2}>
                             <Grid container justifyContent="center" alignItems="center" sx={{ mt: 1 }}>
-                                <Grid item mb={1} xs={4} md="auto">
+                                <Grid item mb={1} xs={4} sm="auto">
                                     <TextField type="number" label="Simulações" value={totalRuns} disabled={isSimulating} onChange={(event) => setTotalRuns(event.target.value)} />
                                 </Grid>
-                                <Grid item mb={1} xs={4} md="auto">
+                                <Grid item mb={1} xs={4} sm="auto">
                                     <EnumPicker enum={SimulationMode} label="Tipo" disabled={isSimulating} value={simulationMode} onChange={(type) => setSimulationMode(type)} sx={{ ml: 1 }} />
                                 </Grid>
-                                <Grid item mb={1} xs={4} md="auto">
+                                <Grid item mb={1} xs={4} sm="auto">
                                     <EnumPicker enum={SimulationType} label="Algoritimo" disabled={isSimulating} value={simulationType} onChange={(type) => setSimulationType(type)} sx={{ ml: 1 }} />
                                 </Grid>
-                                <Grid item mb={1} xs={6} md="auto">
+                                <Grid item mb={1} xs={6} sm="auto">
                                     <Button variant="outlined" color={color} onClick={run} sx={{ height: "100%", ml: 1 }}>{title}</Button>
                                 </Grid>
-                                <Grid item mb={1} xs={6} md="auto">
+                                <Grid item mb={1} xs={6} sm="auto">
                                     <Button variant="outlined" disabled={isSimulating} color="error" onClick={reset} sx={{ height: "100%", ml: 1 }}>Reset</Button>
                                 </Grid>
                             </Grid>
