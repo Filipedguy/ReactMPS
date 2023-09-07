@@ -17,7 +17,6 @@ import 'dayjs/locale/pt-br';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
 const totalRuns = 10000;
-const parallelRuns = 5;
 let loading = false;
 let loaded = false;
 
@@ -126,16 +125,22 @@ function App() {
             
             setProgress(progress + 1);
         }
+        else if (isSimulating && simulationMode !== SimulationMode.Chances && needsSimulation(simulatedTable)) {
+            // Just ignore because table simulation is ongoing
+        }
         else if (isSimulating && simulationMode !== SimulationMode.Table) {
             setSimulating(false);
         }
-    }, [isSimulating, progress, statistics, table, simulationType, simulationMode]);
+    }, [isSimulating, progress, statistics, table, simulationType, simulationMode, simulatedTable]);
 
     useEffect(() => {
         if (isSimulating && simulationMode !== SimulationMode.Chances && needsSimulation(simulatedTable)) {
             var newTable = simulateNextMatch(simulatedTable, simulationType, totalRuns);
 
             setSimulatedTable(newTable);
+        }
+        else if (isSimulating && progress < totalRuns && simulationMode !== SimulationMode.Table) {
+            // Just ignore because chances simulation is ongoing
         }
         else if (isSimulating && simulationMode !== SimulationMode.Chances) {
             setSimulating(false);

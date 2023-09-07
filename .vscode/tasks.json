@@ -1,0 +1,44 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "npm",
+			"script": "start",
+			"problemMatcher": [],
+			"label": "npm: start",
+			"detail": "react-scripts start"
+		},
+		{
+			"type": "npm",
+			"script": "debug",
+			"label": "npm: debug",
+			"isBackground": true,
+			"detail": "set BROWSER=none&&react-scripts start",
+			"problemMatcher": [
+				{
+				  "pattern": [
+					{
+					  "regexp": ".",
+					  "file": 1,
+					  "location": 2,
+					  "message": 3
+					}
+				  ],
+				  "background": {
+					"activeOnStart": true,
+					"beginsPattern": "reactmps",
+					"endsPattern": "webpack compiled",
+				  }
+				}
+			  ]
+		},
+		{
+			"type": "npm",
+			"script": "build",
+			"group": "build",
+			"problemMatcher": [],
+			"label": "npm: build",
+			"detail": "set BUILD_PATH=docs&&react-scripts build"
+		}
+	]
+}

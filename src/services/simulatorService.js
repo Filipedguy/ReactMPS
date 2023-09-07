@@ -71,31 +71,6 @@ export function simulateAll(table, runs, simulator) {
     };
 }
 
-function simulateAllImproved(table, runs, simulator) {
-    var champStatistics = {};
-    var continentalCupStatistics = {};
-    var continentalCupQualifiersStatistics = {};
-    var descendedStatistics = {};
-
-    for (var i = 0; i < runs; i++) {
-        var clonedTable = cloneDeep(table);
-
-        simulateTableImproved(clonedTable, simulator);
-
-        registerTeam(champStatistics, clonedTable.rank.filter(r => r.isChampion)[0].team.code);
-        clonedTable.rank.filter(r => r.isInContinentalCup).forEach(r => registerTeam(continentalCupStatistics, r.team.code));
-        clonedTable.rank.filter(r => r.isInContinentalCupQualifiers).forEach(r => registerTeam(continentalCupQualifiersStatistics, r.team.code));
-        clonedTable.rank.filter(r => r.isDescending).forEach(r => registerTeam(descendedStatistics, r.team.code));
-    }
-
-    return {
-        champStatistics,
-        continentalCupStatistics,
-        continentalCupQualifiersStatistics,
-        descendedStatistics
-    };
-}
-
 export function simulateMatch(match, table, simulationType, runs) {
     var simulator = getSimulationStrategy(simulationType);
     var simulatedMatches = [];
@@ -149,18 +124,6 @@ function simulateTable(table, simulator) {
 
         updateRank(table);
     });
-}
-
-function simulateTableImproved(table, simulator) {
-    table.rounds.forEach(r => {
-        r.matches.forEach(m => {
-            if (m.status !== "finalizado" && m.status !== "em andamento") {
-                simulator(m, table.rank.filter(r => r.team.code === m.homeTeam.code)[0], table.rank.filter(r => r.team.code === m.awayTeam.code)[0]);
-            }
-        });
-    });
-
-    updateRank(table);
 }
 
 function getSimulationStrategy(type) {
