@@ -51,7 +51,7 @@ export default function Matches(props) {
 
     return (
         <Stack>
-            <Stack direction="row">
+            <Stack direction="row" justifyContent="center" mt={1} mb={1} >
                 <Button disabled={previousDisabled} onClick={previousRound}><ArrowBackIcon /></Button>
                 <Typography variant="h5">Rodada {currentRound + 1}</Typography>
                 <Button disabled={nextDisabled} onClick={nextRound}><ArrowForwardIcon /></Button>

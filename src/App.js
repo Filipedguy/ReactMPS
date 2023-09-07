@@ -8,6 +8,7 @@ import Statistics from './components/Statistics';
 import React, { useState, useEffect } from 'react';
 import { simulate, simulateNextMatch, simulateMatchById } from './services/simulatorService';
 import EnumPicker from './components/EnumPicker';
+import TextField from '@mui/material/TextField';
 import LinearProgress from '@mui/material/LinearProgress';
 import Typography from '@mui/material/Typography';
 import SimulationType from './services/enums/simulationType';
@@ -16,7 +17,6 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-const totalRuns = 10000;
 let loading = false;
 let loaded = false;
 
@@ -71,6 +71,7 @@ function App() {
     var [isSimulating, setSimulating] = useState(false);
     var [simulationType, setSimulationType] = useState(0);
     var [simulationMode, setSimulationMode] = useState(0);
+    var [totalRuns, setTotalRuns] = useState(10000);
 
     var [statistics, setStatistics] = useState(buildAllStats);
 
@@ -122,7 +123,7 @@ function App() {
 
                 setStatistics(newStats);
             });
-            
+
             setProgress(progress + 1);
         }
         else if (isSimulating && simulationMode !== SimulationMode.Chances && needsSimulation(simulatedTable)) {
@@ -171,17 +172,18 @@ function App() {
                         <Grid item xs={12}>
                             <Typography variant="h1" sx={{ fontFamily: "Caprasimo" }}>ProbSim</Typography>
                         </Grid>
-                        <Grid item xs={12}>
-                            <EnumPicker enum={SimulationMode} label="Tipo" value={simulationMode} onChange={(type) => setSimulationMode(type)} />
-                            <EnumPicker enum={SimulationType} label="Algoritimo" value={simulationType} onChange={(type) => setSimulationType(type)} sx={{ ml: 1 }} />
+                        <Grid item xs={12} mb={2}>
+                            <TextField type="number" label="Simulações" value={totalRuns} disabled={isSimulating} onChange={(event) => setTotalRuns(event.target.value)} />
+                            <EnumPicker enum={SimulationMode} label="Tipo" disabled={isSimulating} value={simulationMode} onChange={(type) => setSimulationMode(type)} sx={{ ml: 1 }} />
+                            <EnumPicker enum={SimulationType} label="Algoritimo" disabled={isSimulating} value={simulationType} onChange={(type) => setSimulationType(type)} sx={{ ml: 1 }} />
                             <Button variant="outlined" color={color} onClick={run} sx={{ height: "100%", ml: 1 }}>{title}</Button>
                             <Button variant="outlined" disabled={isSimulating} color="error" onClick={reset} sx={{ height: "100%", ml: 1 }}>Reset</Button>
                         </Grid>
-                        {simulationMode !== SimulationMode.Table ? (
+                        {(simulationMode !== SimulationMode.Table && isSimulating) ? (
                             <>
                                 <Grid item xs={2}>
                                 </Grid>
-                                <Grid item xs={8}>
+                                <Grid item xs={8} mb={2}>
                                     Chances
                                     <LinearProgress variant="determinate" value={(progress / totalRuns) * 100} />
                                     <Typography variant="body1">{progress}/{totalRuns}</Typography>
@@ -190,11 +192,11 @@ function App() {
                                 </Grid>
                             </>
                         ) : ''}
-                        {simulationMode !== SimulationMode.Chances ? (
+                        {(simulationMode !== SimulationMode.Chances && isSimulating) ? (
                             <>
                                 <Grid item xs={2}>
                                 </Grid>
-                                <Grid item xs={8}>
+                                <Grid item xs={8} mb={2}>
                                     Table
                                     <LinearProgress variant="determinate" value={(finishedMatches(simulatedTable) / totalMatches(simulatedTable)) * 100} />
                                     <Typography variant="body1">{finishedMatches(simulatedTable)}/{totalMatches(simulatedTable)}</Typography>
