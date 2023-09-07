@@ -1,5 +1,4 @@
-﻿//import axios from 'axios';
-import dayjs from 'dayjs';
+﻿import dayjs from 'dayjs';
 import { getData } from './external/footstatsService';
 
 export async function GetTable() {

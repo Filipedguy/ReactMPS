@@ -36,7 +36,7 @@ export default function SoccerTable(props) {
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {props.table.rank.map(r => <Row data={r} />)}
+                                {props.table.rank.map(r => <Row key={r.team.code} data={r} />)}
                             </TableBody>
                         </Table>
                     </TableContainer>

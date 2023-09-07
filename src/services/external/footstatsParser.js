@@ -49,14 +49,3 @@ function parseStatus(status) {
         return "em andamento";
     }
 }
-
-function parseStadium(stadium) {
-    if (!stadium) {
-        return null;
-    }
-
-    return {
-        id: stadium.estadio_id,
-        name: stadium.nome_popular
-    };
-}
