@@ -5,8 +5,9 @@
       "type": "chrome",
       "request": "launch",
       "name": "localhost (Chrome)",
+      "preLaunchTask": "npm: debug",
       "url": "http://localhost:3000/ReactMPS",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}/src"
     }
   ]
 }
