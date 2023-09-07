@@ -120,7 +120,8 @@ function Match(props) {
                 <Container>
                     <Stack direction="row" justifyContent="center" spacing={1}>
                         <Button size="small" variant="outlined" disabled={props.data.status === "finalizado"} onClick={handleSimulateRequest}>Simulate</Button>
-                        <LiveMatchSimulation match={props.data} rank={props.rank} disabled={props.data.status === "finalizado"} />
+                        {/* This feature should not be on production yet */}
+                        {/* <LiveMatchSimulation match={props.data} rank={props.rank} disabled={props.data.status === "finalizado"} /> */}
                     </Stack>
                 </Container>
             </CardActions>
