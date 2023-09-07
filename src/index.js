@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter } from 'react-router-dom'
 
 Object.dict = (obj) => {
     return Object.entries(obj).map(e => { return { key: e[0], value: e[1] }; });
@@ -23,9 +24,11 @@ Array.prototype.count = function (filter) {
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>
+    <BrowserRouter basename='/ReactMPS'>
+        <React.StrictMode>
+            <App />
+        </React.StrictMode>
+    </BrowserRouter>
 );
 
 // If you want to start measuring performance in your app, pass a function
